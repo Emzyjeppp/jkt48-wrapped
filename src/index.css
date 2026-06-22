@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-display: 'Outfit', system-ui, sans-serif;
+  }
+  
+  body {
+    font-family: var(--font-sans);
+    background-color: #030204; /* deep dark wota theater background */
+    overflow: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+/* Glassmorphism for JKT48 Theme */
+.glass-panel {
+  background: rgba(244, 63, 94, 0.05); /* very light rose tint */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(244, 63, 94, 0.15);
+}
+
+.glass-panel-heavy {
+  background: rgba(10, 5, 8, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(244, 63, 94, 0.2);
+}
+
+/* JKT48 Color Gradients */
+.text-gradient-jkt48 {
+  background: linear-gradient(135deg, #f43f5e 0%, #e11d48 50%, #be123c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Floating lightstick background glows */
+.glow-stick {
+  filter: blur(100px);
+  opacity: 0.35;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: glow-float 15s infinite alternate ease-in-out;
+}
+
+@keyframes glow-float {
+  0% {
+    transform: translate(0px, 0px) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate(40px, -60px) scale(1.1) rotate(90deg);
+  }
+  100% {
+    transform: translate(-30px, 30px) scale(0.9) rotate(180deg);
+  }
+}
+
+.slide-enter {
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  animation: slideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Shimmer utility */
+.animate-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-shimmer::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.05) 20%,
+    rgba(255, 255, 255, 0.12) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer-effect 2s infinite;
+  content: '';
+}
+
+@keyframes shimmer-effect {
+  100% {
+    transform: translateX(100%);
+  }
+}
